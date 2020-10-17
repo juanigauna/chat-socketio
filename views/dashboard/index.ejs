@@ -1,0 +1,36 @@
+<!-- class="d-flex jc-space-around a-items-start pd-main" -->
+<!-- p-absolute width-100 height-100 d-flex jc-center a-items-center -->
+<section id="set-username" class="p-absolute width-100 height-100 d-flex jc-center a-items-center">
+    <div class="width-half-height-screen card">
+        <div class="card-header">
+            Set a username
+        </div>
+        <form class="card-body d-flex flex-direction-column">
+            <div class="p-relative">
+                <label id="label-username" class="field-label" for="username">Username</label>
+                <input id="username" class="width-wk-fill-available m-b-12" type="text" placeholder="Write your username" autocomplete="off">
+            </div>
+            <button>Send</button>
+        </form>
+    </div>
+</section>
+<section id="wrapper-main" class="d-none">
+    <div class="width-half-height-screen card bg-white">
+        <div class="card-header">
+            Users online
+        </div>
+        <div id="user-list" class="d-flex flex-direction-column"></div>
+    </div>
+    <div class="width-half-screen card">
+        <div class="card-header m-b-12">
+            Chat
+        </div>
+        <div id="message-list" class="d-flex pd-main flex-direction-column-reverse"></div>
+        <form id="send-message">
+            <div class="p-relative">
+                <label id="label-message" class="field-label" for="message">Message</label>
+                <input id="message" class="message-box" type="text" placeholder="What are you thinking?" autocomplete="off">
+            </div>
+        </form>
+    </div>
+</section>
