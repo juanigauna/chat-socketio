@@ -73,6 +73,7 @@ socket.on('user-disconnected', socketId => {
 })
 socket.on('new-message', data => {
     addNewMessage(data)
+    document.querySelector('#message-list').scrollTo(0,document.querySelector('#message-list').scrollHeight)
 })
 socket.on('new-greet', data => {
     createAlert({
