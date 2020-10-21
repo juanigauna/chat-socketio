@@ -210,7 +210,13 @@ button:active, input[type="submit"]:active {
     0% {
         bottom: -50px 
     }
-    3%, 50%, 97% {
+    3% {
+        bottom: 60px
+    }
+    5% {
+        bottom: 40px
+    }
+    8%, 50%, 97% {
         bottom: 50px
     }
     100% {

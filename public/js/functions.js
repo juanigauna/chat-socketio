@@ -4,6 +4,7 @@ function createAlert(data) {
     alert.id = id
     alert.className = 'alert'
     alert.style.animationDuration = `${data.duration}ms`
+    if (data.onclick) alert.onclick = data.onclick
     alert.innerHTML = `
         <p>${data.text}</p>
         <button onclick="document.getElementById(${id}).remove(); return false">Delete</button>
