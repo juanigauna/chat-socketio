@@ -4,13 +4,11 @@ const express = require('express'),
 let app = express(),
     http = require('http').Server(app),
     io = require('socket.io')(http),
-    dashboardRoutes = require('./routes/dashboard'),
-    handleWordsRoutes = require('./routes/handleWords')
+    homeRoutes = require('./routes/home')
 
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
-app.use('/', dashboardRoutes)
-app.use('/words', handleWordsRoutes)
+app.use('/', homeRoutes)
 
 require('./events')(io)
 
