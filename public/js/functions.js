@@ -4,9 +4,10 @@ function createAlert(data) {
     alert.id = id
     alert.className = 'alert'
     alert.style.animationDuration = `${data.duration}ms`
-    if (data.onclick) alert.onclick = data.onclick
+    alert.onclick = data.onclick || null
     alert.innerHTML = `
         <p>${data.text}</p>
+
         <button onclick="document.getElementById(${id}).remove(); return false">Delete</button>
     `
     document.body.appendChild(alert)
@@ -34,14 +35,12 @@ function addNewUser(data) {
 
     const status = document.createElement('p')
     status.id = `status-${data.socketId}`
-    if (null === data.username) status.className = 'danger'
+    status.className = null === data.username && 'danger'
     status.innerText = null === data.username ? 'No username' : 'Online'
 
     userItem.appendChild(username)
     userItem.appendChild(status)
     document.querySelector('#user-list').appendChild(userItem)
-
-    return true
 }
 function addNewMessage(data) {
     const message = document.createElement('div')
@@ -49,7 +48,7 @@ function addNewMessage(data) {
     message.className = 'message-wrapper'
 
     const username = document.createElement('a')
-    if (data.socketId !== socket.id) username.onclick = () => indicate(data.socketId)
+    username.onclick = data.socketId !== socket.id ? () => indicate(data.socketId) : null
     username.innerText = data.username
 
     const text = document.createElement('p')

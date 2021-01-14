@@ -1,10 +1,9 @@
 let { v4: uuid } = require('uuid')
-const usersOnline = [],
-      messages = []
+const usersOnline = []
+const messages = []
 function getUsername(socketId) {
-    let user = usersOnline.filter(user => user.socketId === socketId),
-        { username } = user[0]
-    return username
+    let [user] = usersOnline.filter(user => user.socketId === socketId)
+    return user.username
 }
 module.exports = (io) => {
     io.on('connection', socket => {
@@ -12,11 +11,10 @@ module.exports = (io) => {
             socketId: socket.id,
             username: null
         }
-        io.sockets.emit('user-connected', user)
         usersOnline.push(user)
-    
+        io.sockets.emit('user-connected', user)
         socket.emit('pass-users', usersOnline)
-    
+        
         socket.on('set-username', data => {
             usersOnline.filter(user => { 
                 if (user.socketId === socket.id) {
@@ -28,7 +26,6 @@ module.exports = (io) => {
         
         socket.on('new-message', data => {
             let messageId = uuid()
-    
             const message = {
                 id: messageId,
                 socketId: socket.id,

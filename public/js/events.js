@@ -1,8 +1,6 @@
-socket.on('pass-users', userList => {
-    userList.forEach(data => {
-        if (socket.id !== data.socketId) addNewUser(data)
-    })
-})
+socket.on('pass-users', userList => userList.forEach(data => {
+    if (socket.id !== data.socketId) addNewUser(data)
+}))
 socket.on('user-connected', data => {
     if (socket.id !== data.socketId) addNewUser(data)
 })
@@ -15,10 +13,10 @@ socket.on('user-disconnected', socketId => {
     document.querySelector(`#user-${socketId}`).remove()
 })
 socket.on('new-message', data => {
+    addNewMessage(data)
     let content = document.querySelector('#message-list'),
         top = content.scrollTop,
         height = content.scrollHeight - content.clientHeight
-    addNewMessage(data)
     if (top === height) {
         document.querySelector('#message-list').scrollTo(0, document.querySelector('#message-list').scrollHeight)
         return true

@@ -33,13 +33,12 @@ document.querySelector('#set-username').addEventListener('submit', e => {
         })
         document.querySelector('#set-username').className = 'd-none'
         document.querySelector('#wrapper-main').className = 'd-flex jc-space-around a-items-start pd-main'
-        return true
+        return
     }
     createAlert({
         text: 'Please, fill the field.',
         duration: 3500
     })
-    return false
 })
 document.querySelector('#send-message').addEventListener('submit', e => {
     e.preventDefault()
@@ -47,11 +46,10 @@ document.querySelector('#send-message').addEventListener('submit', e => {
     if (text.length > 0) {
         socket.emit('new-message', { text: text })
         document.querySelector('#send-message').reset()
-        return true
+        return
     }
     createAlert({
         text: 'Write something...',
         duration: 3500
     })
-    return false
 })
