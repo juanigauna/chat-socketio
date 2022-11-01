@@ -53,3 +53,10 @@ document.querySelector('#send-message').addEventListener('submit', e => {
         duration: 3500
     })
 })
+let content = document.querySelector('#message-list')
+content.addEventListener('scroll', event => {
+    let content = document.querySelector('#message-list'),
+        top = content.scrollTop,
+        height = content.scrollHeight - content.clientHeight
+    console.log(height - Math.round(event.target.scrollTop))
+})

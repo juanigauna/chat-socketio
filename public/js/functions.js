@@ -43,6 +43,12 @@ function addNewUser(data) {
     document.querySelector('#user-list').appendChild(userItem)
 }
 function addNewMessage(data) {
+    let content = document.querySelector('#message-list'),
+        top = Math.round(content.scrollTop),
+        reversePos = (content.scrollHeight - content.clientHeight) - top
+    if (reversePos <= 5) {
+        document.querySelector('#message-list').scrollTo(0, content.scrollHeight)
+    }
     const message = document.createElement('div')
     message.id = data.id
     message.className = 'message-wrapper'

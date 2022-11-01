@@ -13,13 +13,13 @@ socket.on('user-disconnected', socketId => {
     document.querySelector(`#user-${socketId}`).remove()
 })
 socket.on('new-message', data => {
-    addNewMessage(data)
     let content = document.querySelector('#message-list'),
-        top = content.scrollTop,
-        height = content.scrollHeight - content.clientHeight
-    if (top === height) {
-        document.querySelector('#message-list').scrollTo(0, document.querySelector('#message-list').scrollHeight)
-        return true
+        top = Math.round(content.scrollTop),
+        reversePos = (content.scrollHeight - content.clientHeight) - top
+    addNewMessage(data)
+    if (reversePos <= 10) {
+        document.querySelector('#message-list').scrollTo(0, content.scrollHeight)
+        return 
     }
     createAlert({
         text: `${data.username}: ${data.text}`,
