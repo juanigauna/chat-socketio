@@ -3,13 +3,13 @@
     "name": "chat-socketio",
     "builds": [
         {
-            "src": "src/server.js",
+            "src": "./src/server.js",
             "use": "@vercel/node"
         }
     ],
     "rewrites": [
         {
-            "source": "/src/(.*)",
+            "source": "/(.*)",
             "destination": "/"
         }
     ]
